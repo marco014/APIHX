@@ -4,10 +4,10 @@ import { Connection } from 'mysql2/promise';
 const connectMySQL = async (): Promise<Connection> => {
     try {
         const connection = await mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.BD_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME
+            host: "database-1-rds.c4wsy2r85bv0.us-east-1.rds.amazonaws.com",
+            user: "luffy",
+            password: "12345678",
+            database: "mantenimiento"
         });
         console.log('Conectando a la base de datos de MySQL');
         return connection;
