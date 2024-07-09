@@ -10,11 +10,11 @@ class MySQLProductRepository implements ProductRepository {
             'INSERT INTO products (name, price, amount) VALUES (?, ?)',
             [product.name,product.price, product.amount]
         );
-        product.id = result.insertId.toString();
+        product.id = result.insertId;
         return product;
     }
     
-    async findbyID(id: string): Promise<Product | null> {
+    async findbyID(id: number): Promise<Product | null> {
         const connection= await connectMySQL();
         const [rows]: [RowDataPacket[], FieldPacket[]] = await connection.execute(
             'SELECT * FROM products WHERE id = ?',

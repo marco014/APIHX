@@ -10,7 +10,7 @@ class MongoProductRepository implements ProductRepository {
         return new Product(saveProduct.id, saveProduct.name, saveProduct.price, saveProduct.amount);
     }
 
-    async findbyID(id: string): Promise<Product | null> {
+    async findbyID(id: number): Promise<Product | null> {
      const product = await ProductModel.findById(id);
      if ( !product ) return null;
      return new Product(product.id, product.name, product.price, product.amount);

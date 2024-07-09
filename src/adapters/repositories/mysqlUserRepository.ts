@@ -11,11 +11,11 @@ class MySQLUserRepository implements UserRepository {
             'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
             [user.name, user.email, user.password]
         );
-        user.id = result.insertId.toString(); // Assuming `id` is a string in User model.
+        user.id = result.insertId; // Assuming `id` is a string in User model.
         return user;
     }
 
-    async findById(id: string): Promise<User | null> {
+    async findById(id: number): Promise<User | null> {
         const connection = await connectMySQL();
         const [rows]: [RowDataPacket[], FieldPacket[]] = await connection.execute(
             'SELECT * FROM users WHERE id = ?',

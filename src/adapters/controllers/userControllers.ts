@@ -21,7 +21,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     const { id } = req.params;
     try {
         console.log("Request to get user by ID:", id);
-        const user = await userService.getUserById(id);
+        const user = await userService.getUserById(parseInt(id));
         res.status(200).json(user);
     } catch (error: unknown) {
         if (error instanceof Error) {
@@ -53,7 +53,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
     const { name, email, password } = req.body;
     try {
         console.log("Request to update user:", id, name, email);
-        const user = await userService.updateUser(id, name, email, password);
+        const user = await userService.updateUser(parseInt(id), name, email, password);
         res.status(200).json(user);
     } catch (error: unknown) {
         if (error instanceof Error) {

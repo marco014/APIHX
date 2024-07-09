@@ -10,7 +10,7 @@ class MongoUserRepository implements UserRepository {
         return new User(savedUser.id, savedUser.name, savedUser.email, savedUser.password);
     }
 
-    async findById(id: string): Promise<User | null> {
+    async findById(id: number): Promise<User | null> {
         const user = await UserModel.findById(id);
         if (!user) return null;
         return new User(user.id, user.name, user.email, user.password);
@@ -23,7 +23,7 @@ class MongoUserRepository implements UserRepository {
 
     async update(user: User): Promise<User> {
         const updatedUser = await UserModel.findByIdAndUpdate(user.id, user, { new: true });
-        if (!updatedUser) throw new Error('User not found');
+        if (!updatedUser) throw new Error('Usuario no encontrado');
         return new User(updatedUser.id, updatedUser.name, updatedUser.email, updatedUser.password);
     }
 

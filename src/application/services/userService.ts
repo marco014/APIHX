@@ -15,7 +15,7 @@ export class UserService {
         return await this.userRepository.save(user);
     }
 
-    async getUserById(id: string): Promise<User | null> {
+    async getUserById(id: number): Promise<User | null> {
         console.log("Getting user by ID:", id);
         return await this.userRepository.findById(id);
     }
@@ -25,7 +25,7 @@ export class UserService {
         return await this.userRepository.findAll();
     }
 
-    async updateUser(id: string, name: string, email: string, password: string): Promise<User> {
+    async updateUser(id: number, name: string, email: string, password: string): Promise<User> {
         console.log("Updating user:", id, name, email);
         const user = new User(id, name, email, password);
         return await this.userRepository.update(user);
